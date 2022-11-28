@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@usher.so/auth": ["packages/auth/src/index.ts"],
+      "@usher.so/partnerships": ["packages/partnerships/src/index.ts"],
+      "@usher.so/shared": ["packages/shared/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
