@@ -58,4 +58,4 @@ try {
 }
 
 // Execute "npm publish" to publish
-execSync(`npm publish --access public --tag ${tag} --registry http://localhost:4873`);
+execSync(`npm publish --access public --tag ${tag}`);
