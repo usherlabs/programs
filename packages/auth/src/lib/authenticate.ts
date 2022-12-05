@@ -6,6 +6,7 @@ import { DID } from "dids";
 import { ethers } from "ethers";
 import { Base64 } from "js-base64";
 import * as uint8arrays from "uint8arrays";
+import { AuthOptions } from "./options";
 import { WalletAuth } from "./walletAuth";
 
 export class Authenticate {
@@ -13,9 +14,9 @@ export class Authenticate {
   protected auths: WalletAuth[] = [];
 
   constructor(
-    private ceramicUrl: string,
     private arweave: Arweave,
-    private ethProvider: ethers.providers.Web3Provider) {
+    private ethProvider: ethers.providers.Web3Provider,
+    private authOptions?: AuthOptions) {
   }
 
   private add(auth: WalletAuth) {
@@ -95,11 +96,15 @@ export class Authenticate {
         ) => Promise<Uint8Array>;
       }
   ): Promise<WalletAuth> {
-    const auth = new WalletAuth(this.ceramicUrl, {
-      address,
-      chain: Chains.ARWEAVE,
-      connection
-    });
+    const auth = new WalletAuth(
+      {
+        address,
+        chain: Chains.ARWEAVE,
+        connection
+      },
+      this.authOptions
+    );
+
     const sig = await provider.signature(uint8arrays.fromString(auth.id), {
       name: "RSA-PSS",
       saltLength: 0 // This ensures that no additional salt is produced and added to the message signed.
@@ -125,11 +130,14 @@ export class Authenticate {
     address: string,
     connection: Connections
   ): Promise<WalletAuth> {
-    const auth = new WalletAuth(this.ceramicUrl, {
-      address,
-      chain: Chains.ETHEREUM,
-      connection
-    });
+    const auth = new WalletAuth(
+      {
+        address,
+        chain: Chains.ETHEREUM,
+        connection
+      },
+      this.authOptions
+    );
 
     const previouslyConnectedWallets = JSON.parse(
       window.localStorage.getItem("connectedWallets") || "[]"
@@ -164,11 +172,15 @@ export class Authenticate {
   public async withMagic(): Promise<WalletAuth[]> {
     const signer = this.ethProvider.getSigner();
     const address = await signer.getAddress();
-    const ethAuth = new WalletAuth(this.ceramicUrl, {
-      address,
-      chain: Chains.ETHEREUM,
-      connection: Connections.MAGIC
-    });
+    const ethAuth = new WalletAuth(
+      {
+        address,
+        chain: Chains.ETHEREUM,
+        connection: Connections.MAGIC
+      },
+      this.authOptions
+    );
+
     const sig = await signer.signMessage(ethAuth.id);
     await ethAuth.connect(uint8arrays.fromString(sig));
     const { did } = ethAuth;

@@ -1,6 +1,7 @@
 import { WalletAliases } from "@usher.so/datamodels";
 import { Wallet } from "@usher.so/shared";
 import { Auth } from "./auth";
+import { AuthOptions } from "./options";
 
 type MagicWallet = {
 	arweave?: {
@@ -15,8 +16,11 @@ const CERAMIC_MAGIC_WALLETS_KEY = "magicWallets";
  * A class representing a single authentication (wallet connection)
  */
 export class WalletAuth extends Auth {
-	constructor(ceramicUrl: string, protected _wallet: Wallet) {
-		super(ceramicUrl, WalletAliases);
+	protected _wallet: Wallet;
+
+	constructor(wallet: Wallet, options?: AuthOptions) {
+		super(WalletAliases, options);
+		this._wallet = wallet;
 	}
 
 	public get wallet() {

@@ -1,22 +1,25 @@
 import { TileDocument } from "@ceramicnetwork/stream-tile";
 import ono from "@jsdevtools/ono";
 import { Authenticate, WalletAuth } from "@usher.so/auth";
-import * as api from "./api";
+import { ApiOptions } from "@usher.so/shared";
+import { PartnershipsApi } from "./api";
 import { CampaignReference, Partnership } from "./types";
 
 const CERAMIC_PARTNERSHIPS_KEY = "partnerships";
 
 type SetObject = {
-	set: string[];
+  set: string[];
 };
 
 export class Partnerships {
 
   private auth: Authenticate;
+  private api: PartnershipsApi;
   private partnerships: Partnership[] = [];
 
-  constructor(auth: Authenticate) {
+  constructor(auth: Authenticate, options?: ApiOptions) {
     this.auth = auth;
+    this.api = new PartnershipsApi(options)
   }
 
   public getPartnerships() {
@@ -97,7 +100,7 @@ export class Partnerships {
     // const authPartnership = await walletAuth.addPartnership(campaignReference);
 
     const authToken = await this.auth.getAuthToken();
-    await api
+    await this.api
       .relatedPartnerships(authToken)
       .post(authPartnership.id, campaignReference);
 
@@ -111,7 +114,9 @@ export class Partnerships {
    */
   public async loadRelatedPartnerships() {
     const authToken = await this.auth.getAuthToken();
-    const related = await api.relatedPartnerships(authToken).get();
+    const related = await this.api
+      .relatedPartnerships(authToken)
+      .get();
 
     const newPartnerships = [...this.partnerships];
     related.data.forEach((p) => {

@@ -10,6 +10,7 @@ import { DID } from "dids";
 import { Ed25519Provider } from "key-did-provider-ed25519";
 import { getResolver as getKeyResolver } from "key-did-resolver";
 import * as uint8arrays from "uint8arrays";
+import { AuthOptions } from "./options";
 
 type IDIDDataStore = DIDDataStore<
   ModelTypeAliases<
@@ -44,7 +45,14 @@ export abstract class Auth {
 
   protected _store: IDIDDataStore;
 
-  constructor(ceramicUrl: string, aliases: IModelAliases) {
+  constructor(aliases: IModelAliases, options?: AuthOptions) {
+    const ceramicUrl =
+      options && options.ceramicUrl
+        ? options.ceramicUrl
+        : options && options.environment == "staging"
+          ? "https://ceramic-clay.3boxlabs.com"
+          : "https://ceramic.usher.so";
+
     this._ceramic = new CeramicClient(ceramicUrl); // new instance of ceramic client for each DID;
     const model = new DataModel({
       ceramic: this._ceramic,
