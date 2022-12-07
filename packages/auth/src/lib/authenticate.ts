@@ -1,23 +1,22 @@
-import { randomString } from "@stablelib/random";
-import { Chains, Connections, Wallet } from "@usher.so/shared";
-import Arweave from "arweave";
-import { JWKInterface } from "arweave/node/lib/wallet";
-import { DID } from "dids";
-import { ethers } from "ethers";
-import { Base64 } from "js-base64";
-import * as uint8arrays from "uint8arrays";
-import { AuthOptions } from "./options";
-import { WalletAuth } from "./walletAuth";
+import { randomString } from '@stablelib/random';
+import { Chains, Connections, Wallet } from '@usher.so/shared';
+import Arweave from 'arweave';
+import { JWKInterface } from 'arweave/node/lib/wallet';
+import { DID } from 'dids';
+import { ethers } from 'ethers';
+import { Base64 } from 'js-base64';
+import * as uint8arrays from 'uint8arrays';
+import { AuthOptions } from './options';
+import { WalletAuth } from './walletAuth';
 
 export class Authenticate {
-
   protected auths: WalletAuth[] = [];
 
   constructor(
     private arweave: Arweave,
     private ethProvider: ethers.providers.Web3Provider,
-    private authOptions?: AuthOptions) {
-  }
+    private authOptions?: AuthOptions
+  ) {}
 
   private add(auth: WalletAuth) {
     this.auths.push(auth);
@@ -90,24 +89,24 @@ export class Authenticate {
     provider:
       | typeof window.arweaveWallet
       | {
-        signature: (
-          data: Uint8Array,
-          algorithm: RsaPssParams
-        ) => Promise<Uint8Array>;
-      }
+          signature: (
+            data: Uint8Array,
+            algorithm: RsaPssParams
+          ) => Promise<Uint8Array>;
+        }
   ): Promise<WalletAuth> {
     const auth = new WalletAuth(
       {
         address,
         chain: Chains.ARWEAVE,
-        connection
+        connection,
       },
       this.authOptions
     );
 
     const sig = await provider.signature(uint8arrays.fromString(auth.id), {
-      name: "RSA-PSS",
-      saltLength: 0 // This ensures that no additional salt is produced and added to the message signed.
+      name: 'RSA-PSS',
+      saltLength: 0, // This ensures that no additional salt is produced and added to the message signed.
     });
     await auth.connect(sig);
     const { did } = auth;
@@ -134,13 +133,13 @@ export class Authenticate {
       {
         address,
         chain: Chains.ETHEREUM,
-        connection
+        connection,
       },
       this.authOptions
     );
 
     const previouslyConnectedWallets = JSON.parse(
-      window.localStorage.getItem("connectedWallets") || "[]"
+      window.localStorage.getItem('connectedWallets') || '[]'
     ) as (Wallet & { signature: string })[];
 
     const [connectedWallet] = previouslyConnectedWallets.filter(
@@ -176,7 +175,7 @@ export class Authenticate {
       {
         address,
         chain: Chains.ETHEREUM,
-        connection: Connections.MAGIC
+        connection: Connections.MAGIC,
       },
       this.authOptions
     );
@@ -197,7 +196,7 @@ export class Authenticate {
     // For reference, see https://developers.ceramic.network/tools/glaze/example/#5-runtime-usage
     const magicWallets = await ethAuth.getMagicWallets();
     let arweaveKey = {};
-    let arweaveAddress = "";
+    let arweaveAddress = '';
     if (!(magicWallets || {}).arweave) {
       // Create Arweave Jwk
       const key = await this.arweave.wallets.generate();
@@ -209,8 +208,8 @@ export class Authenticate {
       ethAuth.addMagicWallet({
         arweave: {
           address: arAddress,
-          data: encData
-        }
+          data: encData,
+        },
       });
       arweaveKey = key;
       arweaveAddress = arAddress;
@@ -243,11 +242,11 @@ export class Authenticate {
         a.wallet.chain === Chains.ETHEREUM
     );
     if (!ethAuth) {
-      throw new Error("Genisis Magic Wallet not Connected");
+      throw new Error('Genisis Magic Wallet not Connected');
     }
     const magicWallets = await ethAuth.getMagicWallets();
     if (!(magicWallets || {}).arweave) {
-      throw new Error("Magic Arweave Wallet not Connected");
+      throw new Error('Magic Arweave Wallet not Connected');
     }
     const { data } = magicWallets.arweave;
     const jwk = await this.processMagicArweaveJwk(ethAuth.did, data);
@@ -272,21 +271,21 @@ export class Authenticate {
       async signature(data: Uint8Array, algorithm: RsaPssParams) {
         // For reference, see https://github.com/ArweaveTeam/arweave-js/blob/master/src/common/lib/crypto/webcrypto-driver.ts#L110
         const k = await crypto.subtle.importKey(
-          "jwk",
+          'jwk',
           jwk,
           {
-            name: "RSA-PSS",
+            name: 'RSA-PSS',
             hash: {
-              name: "SHA-256"
-            }
+              name: 'SHA-256',
+            },
           },
           false,
-          ["sign"]
+          ['sign']
         );
         // For reference, see: https://github.com/ArweaveTeam/arweave-js/blob/master/src/common/lib/crypto/webcrypto-driver.ts#L48
         const sig = await crypto.subtle.sign(algorithm, k, data);
         return new Uint8Array(sig);
-      }
+      },
     };
   }
 }

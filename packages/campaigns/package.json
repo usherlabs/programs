@@ -1,6 +1,5 @@
 {
   "name": "@usher.so/campaigns",
   "version": "0.0.1",
-	"license": "UNLICENSED",
-  "type": "module"
+  "license": "UNLICENSED"
 }

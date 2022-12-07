@@ -1,9 +1,20 @@
 {
   "name": "programs",
-  "version": "0.0.0",
-	"license": "UNLICENSED",
-  "scripts": {},
-  "private": true,
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nx run-many --target=build",
+    "clean": "del dist"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usherlabs/programs.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "@aws-crypto/sha256-js": "^2.0.2",
     "@ceramicnetwork/http-client": "^2.10.0",
@@ -23,19 +34,23 @@
   },
   "devDependencies": {
     "@nrwl/cli": "15.2.1",
+    "@nrwl/esbuild": "15.2.1",
     "@nrwl/eslint-plugin-nx": "15.2.1",
     "@nrwl/jest": "15.2.1",
     "@nrwl/js": "15.2.1",
     "@nrwl/linter": "15.2.1",
     "@nrwl/workspace": "15.2.1",
     "@types/jest": "28.1.1",
-    "@types/node": "16.11.7",
+    "@types/node": "18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "del-cli": "^5.0.0",
+    "esbuild": "^0.15.7",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
+    "ngx-deploy-npm": "^4.3.10",
     "nx": "15.2.1",
     "prettier": "^2.6.2",
     "ts-jest": "28.0.5",
