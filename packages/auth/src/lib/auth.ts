@@ -1,16 +1,16 @@
 /**
  * A class representing a single authentication (wallet connection)
  */
-import { Sha256 } from "@aws-crypto/sha256-js";
-import { CeramicClient } from "@ceramicnetwork/http-client";
-import { DataModel } from "@glazed/datamodel";
-import { DIDDataStore } from "@glazed/did-datastore";
-import { ModelTypeAliases } from "@glazed/types";
-import { DID } from "dids";
-import { Ed25519Provider } from "key-did-provider-ed25519";
-import { getResolver as getKeyResolver } from "key-did-resolver";
-import * as uint8arrays from "uint8arrays";
-import { AuthOptions } from "./options";
+import { Sha256 } from '@aws-crypto/sha256-js';
+import { CeramicClient } from '@ceramicnetwork/http-client';
+import { DataModel } from '@glazed/datamodel';
+import { DIDDataStore } from '@glazed/did-datastore';
+import { ModelTypeAliases } from '@glazed/types';
+import { DID } from 'dids';
+import { Ed25519Provider } from 'key-did-provider-ed25519';
+import { getResolver as getKeyResolver } from 'key-did-resolver';
+import * as uint8arrays from 'uint8arrays';
+import { AuthOptions } from './options';
 
 type IDIDDataStore = DIDDataStore<
   ModelTypeAliases<
@@ -49,18 +49,18 @@ export abstract class Auth {
     const ceramicUrl =
       options && options.ceramicUrl
         ? options.ceramicUrl
-        : options && options.environment == "staging"
-          ? "https://ceramic-clay.3boxlabs.com"
-          : "https://ceramic.usher.so";
+        : options && options.environment == 'staging'
+        ? 'https://ceramic-clay.3boxlabs.com'
+        : 'https://ceramic.usher.so';
 
     this._ceramic = new CeramicClient(ceramicUrl); // new instance of ceramic client for each DID;
     const model = new DataModel({
       ceramic: this._ceramic,
-      aliases
+      aliases,
     });
     const store = new DIDDataStore({
       ceramic: this._ceramic,
-      model
+      model,
     });
     this.model = model;
     this._store = store;
@@ -95,7 +95,7 @@ export abstract class Auth {
     const did = new DID({
       // Get the DID provider from the 3ID Connect instance
       provider: new Ed25519Provider(entropy),
-      resolver: getKeyResolver()
+      resolver: getKeyResolver(),
     });
     // Authenticate the DID using the 3ID provider from 3ID Connect, this will trigger the
     // authentication flow using 3ID Connect and the Ethereum provider
@@ -114,7 +114,7 @@ export abstract class Auth {
     const defId = this._store.getDefinitionID(key);
     const recordId = await this._store.getRecordID(defId);
     if (!recordId) {
-      return "";
+      return '';
     }
     return recordId;
   }

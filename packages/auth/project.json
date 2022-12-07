@@ -5,10 +5,42 @@
   "projectType": "library",
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["esbuild", "ts"]
+    },
+    "esbuild": {
+      "executor": "@nrwl/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "packages/auth/src/index.ts",
+        "outputPath": "dist/packages/auth",
+        "outputFileName": "main.js",
+        "tsConfig": "packages/auth/tsconfig.lib.json",
+        "project": "packages/auth/package.json",
+        "assets": [
+          {
+            "glob": "packages/auth/README.md",
+            "input": ".",
+            "output": "../.."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "ts": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/auth",
+        "outputPath": "dist/packages/auth/types",
         "main": "packages/auth/src/index.ts",
         "tsConfig": "packages/auth/tsconfig.lib.json",
         "assets": ["packages/auth/*.md"]

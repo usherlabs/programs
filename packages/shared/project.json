@@ -5,10 +5,42 @@
   "projectType": "library",
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["esbuild", "ts"]
+    },
+    "esbuild": {
+      "executor": "@nrwl/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "main": "packages/shared/src/index.ts",
+        "outputPath": "dist/packages/shared",
+        "outputFileName": "main.js",
+        "tsConfig": "packages/shared/tsconfig.lib.json",
+        "project": "packages/shared/package.json",
+        "assets": [
+          {
+            "glob": "packages/shared/README.md",
+            "input": ".",
+            "output": "../.."
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "development": {
+          "minify": false
+        },
+        "production": {
+          "minify": true
+        }
+      }
+    },
+    "ts": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/shared",
+        "outputPath": "dist/packages/shared/types",
         "main": "packages/shared/src/index.ts",
         "tsConfig": "packages/shared/tsconfig.lib.json",
         "assets": ["packages/shared/*.md"]
