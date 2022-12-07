@@ -1,7 +1,7 @@
 {
   "name": "programs",
   "version": "0.0.0",
-	"license": "UNLICENSED",
+  "license": "UNLICENSED",
   "scripts": {},
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     "key-did-provider-ed25519": "^2.0.1",
     "key-did-resolver": "^2.3.0",
     "ky": "^0.32.2",
+    "lodash": "^4.17.21",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "@nrwl/linter": "15.2.1",
     "@nrwl/workspace": "15.2.1",
     "@types/jest": "28.1.1",
+    "@types/lodash": "^4.14.191",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
