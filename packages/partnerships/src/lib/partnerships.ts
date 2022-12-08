@@ -1,41 +1,44 @@
-import { TileDocument } from "@ceramicnetwork/stream-tile";
-import ono from "@jsdevtools/ono";
-import { Authenticate, WalletAuth } from "@usher.so/auth";
-import { ApiOptions } from "@usher.so/shared";
-import { PartnershipsApi } from "./api";
-import { CampaignReference, Partnership } from "./types";
+import { TileDocument } from '@ceramicnetwork/stream-tile';
+import ono from '@jsdevtools/ono';
+import { Authenticate, WalletAuth } from '@usher.so/auth';
+import { ApiOptions } from '@usher.so/shared';
 
-const CERAMIC_PARTNERSHIPS_KEY = "partnerships";
+import { PartnershipsApi } from './api.js';
+import { CampaignReference, Partnership } from './types.js';
+
+const CERAMIC_PARTNERSHIPS_KEY = 'partnerships';
 
 type SetObject = {
   set: string[];
 };
 
 export class Partnerships {
-
   private auth: Authenticate;
   private api: PartnershipsApi;
   private partnerships: Partnership[] = [];
 
   constructor(auth: Authenticate, options?: ApiOptions) {
     this.auth = auth;
-    this.api = new PartnershipsApi(options)
+    this.api = new PartnershipsApi(options);
   }
 
   public getPartnerships() {
     return this.partnerships;
   }
 
-  private async createPartnership(walletAuth: WalletAuth, campaignReference: CampaignReference) {
+  private async createPartnership(
+    walletAuth: WalletAuth,
+    campaignReference: CampaignReference
+  ) {
     const doc = await TileDocument.create(
       walletAuth.ceramic,
       campaignReference,
       {
-        schema: walletAuth.getSchema("Partnership") ?? undefined,
-        family: "usher:partnerships"
+        schema: walletAuth.getSchema('Partnership') ?? undefined,
+        family: 'usher:partnerships',
       },
       {
-        pin: true
+        pin: true,
       }
     );
 
@@ -57,10 +60,9 @@ export class Partnerships {
 
     return {
       id: doc.id.toString(),
-      campaign: campaignReference
+      campaign: campaignReference,
     };
   }
-
 
   /**
    * Add Campaign to Partnerships and load new index for the given authenticated DID that is relative to the chain of the Campaign
@@ -82,13 +84,13 @@ export class Partnerships {
           c.address === campaignReference.address
       )
     ) {
-      throw ono("Partnership already exists", campaignReference);
+      throw ono('Partnership already exists', campaignReference);
     }
 
     console.log(`Creating Partnership...`);
-    const walletAuth = this.auth.getAll().find(
-      (a) => a.wallet.chain === campaignReference.chain
-    );
+    const walletAuth = this.auth
+      .getAll()
+      .find((a) => a.wallet.chain === campaignReference.chain);
     if (!walletAuth) {
       throw ono(
         "No wallet authorised for this Campaign's chain",
@@ -96,7 +98,10 @@ export class Partnerships {
       );
     }
 
-    const authPartnership = await this.createPartnership(walletAuth, campaignReference);
+    const authPartnership = await this.createPartnership(
+      walletAuth,
+      campaignReference
+    );
     // const authPartnership = await walletAuth.addPartnership(campaignReference);
 
     const authToken = await this.auth.getAuthToken();
@@ -114,9 +119,7 @@ export class Partnerships {
    */
   public async loadRelatedPartnerships() {
     const authToken = await this.auth.getAuthToken();
-    const related = await this.api
-      .relatedPartnerships(authToken)
-      .get();
+    const related = await this.api.relatedPartnerships(authToken).get();
 
     const newPartnerships = [...this.partnerships];
     related.data.forEach((p) => {

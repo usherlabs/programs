@@ -4,7 +4,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nx run-many --target=build",
-    "clean": "del dist"
+    "clean": "del dist",
+    "format": "nx format",
+    "lint": "nx workspace-lint"
   },
   "private": false,
   "repository": {

@@ -6,8 +6,9 @@ import { DID } from 'dids';
 import { ethers } from 'ethers';
 import { Base64 } from 'js-base64';
 import * as uint8arrays from 'uint8arrays';
-import { AuthOptions } from './options';
-import { WalletAuth } from './walletAuth';
+
+import { AuthOptions } from './options.js';
+import { WalletAuth } from './walletAuth.js';
 
 export class Authenticate {
   protected auths: WalletAuth[] = [];

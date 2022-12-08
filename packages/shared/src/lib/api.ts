@@ -1,6 +1,7 @@
-import ky from "ky";
-import { KyInstance } from "ky/distribution/types/ky";
-import { ApiOptions } from "./options";
+import ky from 'ky';
+import { KyInstance } from 'ky/distribution/types/ky';
+
+import { ApiOptions } from './options.js';
 
 export class Api {
   private _request: KyInstance;
@@ -9,9 +10,9 @@ export class Api {
     const prefixUrl =
       options && options.url
         ? options.url
-        : options && options.environment == "staging"
-          ? "https://app.staging.usher.so/api"
-          : "https://app.usher.so/api";
+        : options && options.environment == 'staging'
+        ? 'https://app.staging.usher.so/api'
+        : 'https://app.usher.so/api';
 
     this._request = ky.create({ prefixUrl });
   }
@@ -23,8 +24,8 @@ export class Api {
   protected getAuthRequest(authToken: string) {
     return this.getRequest().extend({
       headers: {
-        Authorization: `Bearer ${authToken}`
-      }
+        Authorization: `Bearer ${authToken}`,
+      },
     });
   }
 }
