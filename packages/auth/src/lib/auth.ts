@@ -13,6 +13,7 @@ import * as uint8arrays from 'uint8arrays';
 
 import { AuthOptions } from './options.js';
 
+// ? Required for compatibility with CommonJS modules
 const { Sha256 } = awsSha256;
 
 type IDIDDataStore = DIDDataStore<
