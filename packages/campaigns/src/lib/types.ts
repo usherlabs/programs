@@ -1,15 +1,15 @@
-import { Chains } from "@usher.so/shared";
+import { Chains } from '@usher.so/shared';
 
 export enum CampaignStrategies {
-  FLAT = "flat",
-  PERCENTAGE = "percentage"
+  FLAT = 'flat',
+  PERCENTAGE = 'percentage',
 }
 
 export enum RewardTypes {
-  TOKEN = "token",
-  ERC20 = "erc20",
-  NFT = "nft",
-  PST = "pst"
+  TOKEN = 'token',
+  ERC20 = 'erc20',
+  NFT = 'nft',
+  PST = 'pst',
 }
 
 export type CampaignDetails = {

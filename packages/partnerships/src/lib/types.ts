@@ -1,4 +1,4 @@
-import { Chains } from "@usher.so/shared";
+import { Chains } from '@usher.so/shared';
 
 export type CampaignReference = {
   chain: Chains;

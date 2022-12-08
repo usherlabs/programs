@@ -1,6 +1,6 @@
 import { CampaignReference } from "@usher.so/partnerships";
 import { Api } from "@usher.so/shared";
-import { Campaign } from "./types";
+import { Campaign } from "./types.js";
 
 export class CampaignsApi extends Api {
 

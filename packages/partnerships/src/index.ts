@@ -1,2 +1,2 @@
-export * from './lib/partnerships';
-export * from './lib/types';
+export * from './lib/partnerships.js';
+export * from './lib/types.js';

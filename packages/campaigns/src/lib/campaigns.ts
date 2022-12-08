@@ -1,8 +1,11 @@
 import { CampaignReference } from "@usher.so/partnerships";
 import { ApiOptions } from "@usher.so/shared";
-import { isEqual, uniqWith } from "lodash";
-import { CampaignsApi } from "./api";
-import { Campaign } from "./types";
+import lodash from "lodash";
+import { CampaignsApi } from "./api.js";
+import { Campaign } from "./types.js";
+
+// ? Required for compatibility with CommonJS modules
+const { isEqual, uniqWith } = lodash;
 
 export class Campaigns {
 
