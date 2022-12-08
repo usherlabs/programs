@@ -1,7 +1,7 @@
 export interface EnvOptions {
-  environment?: 'production' | 'staging';
+	environment?: "production" | "staging";
 }
 
 export interface ApiOptions extends EnvOptions {
-  url?: string;
+	url?: string;
 }

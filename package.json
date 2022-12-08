@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nx run-many --target=build",
     "clean": "del dist",
-    "format": "nx format",
+    "format": "nx format --libs-and-apps",
     "lint": "nx workspace-lint"
   },
   "private": false,
