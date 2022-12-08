@@ -196,7 +196,7 @@ export class Authenticate {
 		// Check if Arweave wallet exists for the DID
 		// For reference, see https://developers.ceramic.network/tools/glaze/example/#5-runtime-usage
 		const magicWallets = await ethAuth.getMagicWallets();
-		let arweaveKey = {};
+		let arweaveKey: JWKInterface;
 		let arweaveAddress = "";
 		if (!(magicWallets || {}).arweave) {
 			// Create Arweave Jwk
@@ -266,7 +266,7 @@ export class Authenticate {
 		return jwk as JWKInterface;
 	}
 
-	private static nativeArweaveProvider(jwk: Object) {
+	private static nativeArweaveProvider(jwk: JWKInterface) {
 		return {
 			// We're reimplementing the signature mechanism to allow for 0 salt length -- as the ArweaveJS forces 32
 			async signature(data: Uint8Array, algorithm: RsaPssParams) {
