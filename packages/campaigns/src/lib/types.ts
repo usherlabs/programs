@@ -41,6 +41,8 @@ export type Advertiser = {
 export type Campaign = {
 	id: string;
 	chain: Chains;
+	// Original Arweave Id that provides initial Campaign details
+	origin: string;
 	owner: string;
 	events: {
 		// The strategy for which to calculate the rewards. Flat rewards are calculated per event. Percentage based rewards are calculated based on an amount value submitted at the point of conversion.
