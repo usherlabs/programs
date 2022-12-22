@@ -1,0 +1,7 @@
+{
+	"name": "@usher.so/cli",
+	"type": "module",
+	"bin": {
+		"usher": "./bin/usher.js"
+	}
+}

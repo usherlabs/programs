@@ -35,5 +35,6 @@
 	"workspaceLayout": {
 		"appsDir": "packages",
 		"libsDir": "packages"
-	}
+	},
+	"defaultProject": "cli"
 }

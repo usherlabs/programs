@@ -2055,10 +2055,18 @@
     "@typescript-eslint/types" "5.44.0"
     eslint-visitor-keys "^3.3.0"
 
+"@usher.so/campaigns@link:./dist/packages/campaigns":
+  version "0.0.0"
+  uid ""
+
 "@usher.so/datamodels@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@usher.so/datamodels/-/datamodels-0.0.7.tgz#f5398024e820f78b5f92713e7d55e96532b090c1"
   integrity sha512-/WxmNCnuPz/kCcRtVl3nn/fIL6pm2dG3VpGqmoO4+e7IxDS4aJqeKtX13a57/49PLa5mOLngaVLKDD96sftI6A==
+
+"@usher.so/shared@link:./dist/packages/shared":
+  version "0.0.0"
+  uid ""
 
 "@yarnpkg/lockfile@^1.1.0":
   version "1.1.0"
@@ -2084,6 +2092,13 @@ abab@^2.0.5, abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
   integrity sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==
+
+abort-controller@^3.0.0:
+  version "3.0.0"
+  resolved "http://localhost:4873/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
+  integrity sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==
+  dependencies:
+    event-target-shim "^5.0.0"
 
 acorn-globals@^6.0.0:
   version "6.0.0"
@@ -2681,6 +2696,11 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@^9.4.1:
+  version "9.4.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
+  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -2741,6 +2761,11 @@ dag-jose-utils@^2.0.0:
   dependencies:
     "@ipld/dag-cbor" "^7.0.1"
     multiformats "^9.5.1"
+
+data-uri-to-buffer@^4.0.0:
+  version "4.0.0"
+  resolved "http://localhost:4873/data-uri-to-buffer/-/data-uri-to-buffer-4.0.0.tgz#b5db46aea50f6176428ac05b73be39a57701a64b"
+  integrity sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==
 
 data-urls@^3.0.1:
   version "3.0.2"
@@ -3311,6 +3336,11 @@ ethers@5.6.8:
     "@ethersproject/web" "5.6.1"
     "@ethersproject/wordlists" "5.6.1"
 
+event-target-shim@^5.0.0:
+  version "5.0.1"
+  resolved "http://localhost:4873/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
+  integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
 execa@^5.0.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/execa/-/execa-5.1.1.tgz#f80ad9cbf4298f7bd1d4c9555c21e93741c411dd"
@@ -3397,6 +3427,14 @@ fb-watchman@^2.0.0:
   integrity sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==
   dependencies:
     bser "2.1.1"
+
+fetch-blob@^3.1.2, fetch-blob@^3.1.4:
+  version "3.2.0"
+  resolved "http://localhost:4873/fetch-blob/-/fetch-blob-3.2.0.tgz#f09b8d4bbd45adc6f0c20b7e787e793e309dcce9"
+  integrity sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==
+  dependencies:
+    node-domexception "^1.0.0"
+    web-streams-polyfill "^3.0.3"
 
 figures@3.2.0:
   version "3.2.0"
@@ -3485,6 +3523,13 @@ form-data@^4.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
+
+formdata-polyfill@^4.0.10:
+  version "4.0.10"
+  resolved "http://localhost:4873/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz#24807c31c9d402e002ab3d8c720144ceb8848423"
+  integrity sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==
+  dependencies:
+    fetch-blob "^3.1.2"
 
 fs-constants@^1.0.0:
   version "1.0.0"
@@ -4581,6 +4626,14 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+ky-universal@^0.11.0:
+  version "0.11.0"
+  resolved "http://localhost:4873/ky-universal/-/ky-universal-0.11.0.tgz#f5edf857865aaaea416a1968222148ad7d9e4017"
+  integrity sha512-65KyweaWvk+uKKkCrfAf+xqN2/epw1IJDtlyCPxYffFCMR8u1sp2U65NtWpnozYfZxQ6IUzIlvUcw+hQ82U2Xw==
+  dependencies:
+    abort-controller "^3.0.0"
+    node-fetch "^3.2.10"
+
 ky@^0.32.2:
   version "0.32.2"
   resolved "https://registry.yarnpkg.com/ky/-/ky-0.32.2.tgz#dc62001379977b5dbd98f513d95b52fac8bf2207"
@@ -4805,6 +4858,11 @@ multibase@^4.0.1:
   dependencies:
     "@multiformats/base-x" "^4.0.1"
 
+multiformats@^10.0.0:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/multiformats/-/multiformats-10.0.3.tgz#d4147d01f9a31271c6fb5d24adf9b01f9e656bba"
+  integrity sha512-K2yGSmstS/oEmYiEIieHb53jJCaqp4ERPDQAYrm5sV3UUrVDZeshJQCK6GHAKyIGufU1vAcbS0PdAAZmC7Tzcw==
+
 multiformats@^9.4.10, multiformats@^9.4.2, multiformats@^9.5.1, multiformats@^9.5.2, multiformats@^9.5.4, multiformats@^9.5.8, multiformats@^9.6.5:
   version "9.9.0"
   resolved "https://registry.yarnpkg.com/multiformats/-/multiformats-9.9.0.tgz#c68354e7d21037a8f1f8833c8ccd68618e8f1d37"
@@ -4854,12 +4912,26 @@ node-addon-api@^3.2.1:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.2.1.tgz#81325e0a2117789c0128dab65e7e38f07ceba161"
   integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
 
+node-domexception@^1.0.0:
+  version "1.0.0"
+  resolved "http://localhost:4873/node-domexception/-/node-domexception-1.0.0.tgz#6888db46a1f71c0b76b3f7555016b63fe64766e5"
+  integrity sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==
+
 node-fetch@2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
   dependencies:
     whatwg-url "^5.0.0"
+
+node-fetch@^3.2.10:
+  version "3.3.0"
+  resolved "http://localhost:4873/node-fetch/-/node-fetch-3.3.0.tgz#37e71db4ecc257057af828d523a7243d651d91e4"
+  integrity sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==
+  dependencies:
+    data-uri-to-buffer "^4.0.0"
+    fetch-blob "^3.1.4"
+    formdata-polyfill "^4.0.10"
 
 node-gyp-build@^4.3.0:
   version "4.5.0"
@@ -5806,6 +5878,13 @@ uint8arrays@^3.0.0, uint8arrays@^3.1.0:
   dependencies:
     multiformats "^9.4.2"
 
+uint8arrays@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/uint8arrays/-/uint8arrays-4.0.2.tgz#163bdbcf3f7403b0781754e0436c268548b237c2"
+  integrity sha512-8CWXXZdOvVrIL4SeY/Gnp+idxxiGK4XFkP4FY26Sx/fpTz/b6vv4BVWELMDzQweSyyhdcuAcU14H6izzB6k1Cw==
+  dependencies:
+    multiformats "^10.0.0"
+
 universalify@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.2.0.tgz#6451760566fa857534745ab1dde952d1b1761be0"
@@ -5912,6 +5991,11 @@ walker@^1.0.8:
   integrity sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==
   dependencies:
     makeerror "1.0.12"
+
+web-streams-polyfill@^3.0.3:
+  version "3.2.1"
+  resolved "http://localhost:4873/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
+  integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
@@ -6067,3 +6151,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zod@^3.20.2:
+  version "3.20.2"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.20.2.tgz#068606642c8f51b3333981f91c0a8ab37dfc2807"
+  integrity sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==

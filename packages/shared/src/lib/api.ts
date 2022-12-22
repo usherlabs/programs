@@ -1,20 +1,15 @@
-import ky from "ky";
+import ky from "ky-universal";
 import { KyInstance } from "ky/distribution/types/ky";
 
 import { ApiOptions } from "./options.js";
 
 export class Api {
-	private _request: KyInstance;
+	private readonly _options: ApiOptions;
+	private readonly _request: KyInstance;
 
-	constructor(options?: ApiOptions) {
-		const prefixUrl =
-			options && options.url
-				? options.url
-				: options && options.environment == "staging"
-				? "https://app.staging.usher.so/api"
-				: "https://app.usher.so/api";
-
-		this._request = ky.create({ prefixUrl });
+	constructor(options?: Partial<ApiOptions>) {
+		this._options = new ApiOptions(options);
+		this._request = ky.create({ prefixUrl: this._options.usherUrl });
 	}
 
 	protected getRequest() {

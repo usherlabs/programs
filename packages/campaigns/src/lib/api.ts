@@ -27,6 +27,15 @@ export class CampaignsApi extends Api {
 				}
 				return req.get(`campaigns${qs}`).json();
 			},
+			async index(
+				id: string
+			): Promise<{ success: boolean; campaign: Campaign }> {
+				const response: {
+					success: boolean;
+					campaign: Campaign;
+				} = await req.get(`index-campaign/${id}`).json();
+				return response;
+			},
 		};
 	}
 }
