@@ -1,3 +1,4 @@
+import camelcaseKeys from "camelcase-keys";
 import { z } from "zod";
 
 // TODO: Review zod schema for Advertiser
@@ -5,7 +6,7 @@ export const advertiserDocSchema = z.object({
 	name: z.string().min(1),
 	icon: z.string().url(),
 	description: z.string().min(1),
-	external_link: z.string().url(),
+	externalLink: z.string().url(),
 	twitter: z.string().optional(),
 });
 
@@ -20,7 +21,8 @@ export const advertiserDocTemplate = {
 };
 
 export const parseAdvertiserDoc = (str: string) => {
-	const obj = JSON.parse(str);
+	const json = JSON.parse(str);
+	const obj = camelcaseKeys(json, { deep: true });
 
 	return advertiserDocSchema.parse(obj);
 };

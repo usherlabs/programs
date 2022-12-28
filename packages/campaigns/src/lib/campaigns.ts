@@ -11,6 +11,7 @@ import Arweave from "arweave";
 import { JWKInterface } from "arweave/node/lib/wallet.js";
 import { DID } from "dids";
 import lodash from "lodash";
+import snakecaseKeys from "snakecase-keys";
 import { CampaignsApi } from "./api.js";
 import { Campaign } from "./types.js";
 import { parseArweaveApiConfig } from "./utils.js";
@@ -41,7 +42,10 @@ export class Campaigns {
 		const ceramic = new CeramicClient(this.options.ceramicUrl);
 		ceramic.did = did;
 
-		return await TileDocument.create(ceramic, advertiser);
+		return await TileDocument.create(
+			ceramic,
+			snakecaseKeys(advertiser, { deep: true })
+		);
 	}
 
 	public async createCampaignDetails(
@@ -51,16 +55,20 @@ export class Campaigns {
 		const ceramic = new CeramicClient(this.options.ceramicUrl);
 		ceramic.did = did;
 
-		return await TileDocument.create(ceramic, campaignDetails);
+		return await TileDocument.create(
+			ceramic,
+			snakecaseKeys(campaignDetails, { deep: true })
+		);
 	}
 
 	public async createCampaign(campaign: CampaignDoc, jwk: JWKInterface) {
 		const apiConfig = parseArweaveApiConfig(this.options.arweaveUrl);
 		const arweave = Arweave.init(apiConfig);
+		const data = JSON.stringify(snakecaseKeys(campaign, { deep: true }));
 
 		const transaction = await arweave.createTransaction(
 			{
-				data: JSON.stringify(campaign),
+				data,
 			},
 			jwk
 		);

@@ -1,12 +1,13 @@
+import camelcaseKeys from "camelcase-keys";
 import { z } from "zod";
 
 // TODO: Review zod schema for Campaign Details
 export const campaignDetailsDocSchema = z.object({
-	destination_url: z.string().url(),
+	destinationUrl: z.string().url(),
 	name: z.string(),
 	description: z.string().optional(),
 	image: z.string().url().optional(),
-	external_link: z.string().url().optional(),
+	externalLink: z.string().url().optional(),
 });
 
 export type CampaignDetailsDoc = z.infer<typeof campaignDetailsDocSchema>;
@@ -20,7 +21,8 @@ export const campaignDetailsDocTemplate = {
 };
 
 export const parseCampaignDetails = (str: string) => {
-	const obj = JSON.parse(str);
+	const json = JSON.parse(str);
+	const obj = camelcaseKeys(json, { deep: true });
 
 	return campaignDetailsDocSchema.parse(obj);
 };

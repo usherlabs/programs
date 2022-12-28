@@ -1,4 +1,5 @@
 import { Chains } from "@usher.so/shared";
+import camelcaseKeys from "camelcase-keys";
 import { z } from "zod";
 import { CampaignStrategies, RewardTypes } from "../types.js";
 
@@ -6,7 +7,7 @@ import { CampaignStrategies, RewardTypes } from "../types.js";
 export const campaignDocSchema = z.object({
 	id: z.string().optional(),
 	chain: z.nativeEnum(Chains),
-	disable_verification: z.boolean().optional(),
+	disableVerification: z.boolean().optional(),
 	events: z.array(
 		z.object({
 			strategy: z.nativeEnum(CampaignStrategies),
@@ -53,7 +54,8 @@ export const campaignDocTemplate = {
 };
 
 export async function parseCampaignDoc(str: string): Promise<CampaignDoc> {
-	const obj = JSON.parse(str);
+	const json = JSON.parse(str);
+	const obj = camelcaseKeys(json, { deep: true });
 
 	return await campaignDocSchema.parseAsync(obj);
 }
