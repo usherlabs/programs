@@ -33,7 +33,7 @@ export class ApiOptions extends EnvOptions {
 		this.ceramicUrl = this.getValue(
 			options?.ceramicUrl,
 			"https://ceramic-clay.3boxlabs.com",
-			"https://gateway.ceramic.network"
+			"https://ceramic.usher.so"
 		);
 
 		this.usherUrl = this.getValue(

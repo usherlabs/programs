@@ -9,7 +9,7 @@ export class AuthOptions extends EnvOptions {
 		this.ceramicUrl = this.getValue(
 			options?.ceramicUrl,
 			"https://ceramic-clay.3boxlabs.com",
-			"https://gateway.ceramic.network"
+			"https://ceramic.usher.so"
 		);
 	}
 
