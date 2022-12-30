@@ -41,6 +41,8 @@ interface IModelAliases {
 }
 
 export abstract class Auth {
+	private readonly _options: AuthOptions;
+
 	protected _did!: DID;
 
 	protected _ceramic;
@@ -49,15 +51,10 @@ export abstract class Auth {
 
 	protected _store: IDIDDataStore;
 
-	constructor(aliases: IModelAliases, options?: AuthOptions) {
-		const ceramicUrl =
-			options && options.ceramicUrl
-				? options.ceramicUrl
-				: options && options.environment == "staging"
-				? "https://ceramic-clay.3boxlabs.com"
-				: "https://ceramic.usher.so";
+	constructor(aliases: IModelAliases, options?: Partial<AuthOptions>) {
+		this._options = new AuthOptions(options);
 
-		this._ceramic = new CeramicClient(ceramicUrl); // new instance of ceramic client for each DID;
+		this._ceramic = new CeramicClient(this._options.ceramicUrl); // new instance of ceramic client for each DID;
 		const model = new DataModel({
 			ceramic: this._ceramic,
 			aliases,
