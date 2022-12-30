@@ -8,6 +8,7 @@ export const campaignDocSchema = z.object({
 	id: z.string().optional(),
 	chain: z.nativeEnum(Chains),
 	disableVerification: z.boolean().optional(),
+	owner: z.string().optional(),
 	events: z.array(
 		z.object({
 			strategy: z.nativeEnum(CampaignStrategies),

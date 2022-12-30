@@ -1,3 +1,4 @@
+import fetch from "isomorphic-unfetch";
 import ky from "ky-universal";
 import { KyInstance } from "ky/distribution/types/ky";
 
@@ -9,7 +10,10 @@ export class Api {
 
 	constructor(options?: Partial<ApiOptions>) {
 		this._options = new ApiOptions(options);
-		this._request = ky.create({ prefixUrl: this._options.usherUrl });
+		this._request = ky.create({
+			fetch,
+			prefixUrl: this._options.usherUrl,
+		});
 	}
 
 	protected getRequest() {

@@ -64,23 +64,26 @@ export class Campaigns {
 		privateKey: string,
 		options?: { bundlrUrl?: string; currency?: string }
 	) {
-		const bundlrUrl = options?.bundlrUrl || "https://devnet.bundlr.network";
+		const bundlrUrl = options?.bundlrUrl || "http://node1.bundlr.network";
 		const currency = options?.currency || "arweave";
-		const data = JSON.stringify(snakecaseKeys(campaign, { deep: true }));
 		if (currency === "arweave") {
 			privateKey = JSON.parse(privateKey);
 		}
 		// @ts-ignore
 		const bundlr = new Bundlr.default(bundlrUrl, currency, privateKey);
 		await bundlr.ready();
+		campaign.owner = bundlr.address;
+		const data = JSON.stringify(snakecaseKeys(campaign, { deep: true }));
 		const bytes = Buffer.byteLength(data, "utf-8");
 		const balance = (await bundlr.getLoadedBalance()) as BigNumber;
 		const price = (await bundlr.getPrice(bytes)) as BigNumber;
 		const fundAmount = price.minus(balance);
-		console.log(price.toNumber(), balance.toNumber(), fundAmount.toNumber());
+		console.log(
+			`Bundlr Price: ${price.toNumber()}, Bundlr Balance: ${balance.toNumber()}, Amount to fund Bundlr: ${fundAmount.toNumber()}`
+		);
 		if (fundAmount.gt(new BigNumber(0))) {
 			throw new Error(
-				`You must fund Bundlr with ${fundAmount} in ${currency} currency. For more information, see https://docs.bundlr.network/docs/client/cli#fund-a-bundlr-node`
+				`You must fund Bundlr with ${fundAmount.toNumber()} in ${currency} currency. For more information, see https://docs.bundlr.network/docs/client/cli#fund-a-bundlr-node`
 			);
 		}
 		const response = await bundlr.upload(data, {
