@@ -64,7 +64,6 @@ export const createCommand = new Command()
 		const privateKey = await readWallet(walletData);
 
 		console.log("Uploading campaign to Arweave...");
-		console.log(bundlrUrl);
 		const transactionId = await campaignsProvider.createCampaign(
 			campaign,
 			privateKey,
