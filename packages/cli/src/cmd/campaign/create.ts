@@ -61,7 +61,7 @@ export const createCommand = new Command()
 				currency,
 			}
 		);
-		console.log("Indexing campaign on Usher...");
+		console.log(`Indexing campaign with origin ${transactionId} on Usher...`);
 		const response = await campaignsProvider.indexCampaign(transactionId);
 
 		console.log("Indexed successfully!");

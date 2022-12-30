@@ -79,7 +79,9 @@ export class Campaigns {
 		const fundAmount = price.minus(balance);
 		console.log(price.toNumber(), balance.toNumber(), fundAmount.toNumber());
 		if (fundAmount.gt(new BigNumber(0))) {
-			await bundlr.fund(fundAmount);
+			throw new Error(
+				`You must fund Bundlr with ${fundAmount} in ${currency} currency. For more information, see https://docs.bundlr.network/docs/client/cli#fund-a-bundlr-node`
+			);
 		}
 		const response = await bundlr.upload(data, {
 			tags: [{ name: "Content-Type", value: "application/json" }],
