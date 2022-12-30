@@ -33,7 +33,7 @@ export class CampaignsApi extends Api {
 				const response: {
 					success: boolean;
 					campaign: Campaign;
-				} = await req.get(`campaigns/${id}/index`).json();
+				} = await req.get(`campaigns/${id}/`).json();
 				return response;
 			},
 		};

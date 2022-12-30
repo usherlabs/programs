@@ -17,18 +17,11 @@ export class EnvOptions {
 }
 
 export class ApiOptions extends EnvOptions {
-	readonly arweaveUrl: string;
 	readonly ceramicUrl: string;
 	readonly usherUrl: string;
 
 	constructor(options?: Partial<ApiOptions>) {
 		super(options);
-
-		this.arweaveUrl = this.getValue(
-			options?.arweaveUrl,
-			"https://arweave.net",
-			"https://arweave.net"
-		);
 
 		this.ceramicUrl = this.getValue(
 			options?.ceramicUrl,

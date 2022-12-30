@@ -1,20 +1,23 @@
 import { Campaigns, parseCampaignDoc } from "@usher.so/campaigns";
 import { ApiOptions } from "@usher.so/shared";
 import { Command, Option } from "commander";
-import { readWallet } from "../../utils/arweave.js";
 import { getContentByOptions } from "../../utils/content.js";
+import { readWallet } from "../../utils/wallet.js";
 
 // TODO: Review the ordger of the options
 export const createCommand = new Command()
 	.name("create")
-	.description("Creeate a new Campaign on Arweave")
-	.option(
-		"--arweave <string>",
-		"Arweave API URL",
-		ApiOptions.default.arweaveUrl
-	)
+	.description("Create a new Campaign on Arweave")
 	.option("--usher <string>", "Usher API URL", ApiOptions.default.usherUrl)
-	.requiredOption("--wallet <string>", "Path to Arweave wallet")
+	.requiredOption(
+		"--wallet <string>",
+		"Private Key, or path to Private Key file"
+	)
+	.requiredOption(
+		"--currency <string>",
+		"'arweave' (DEFAULT) | 'ethereum' | 'matic' | 'bnb' | 'fantom' | 'solana' | 'avalanche' | 'boba-eth' | 'boba' | 'near' | 'algorand' | 'aptos'",
+		"arweave"
+	)
 	.addOption(
 		new Option(
 			"--file <string>",
@@ -31,8 +34,8 @@ export const createCommand = new Command()
 	.requiredOption("--details <string>", "Campaign Details StreamId on Ceramic")
 	.action(async (options) => {
 		const {
-			arweave: arweaveUrl,
-			wallet: walletPath,
+			wallet: walletData,
+			currency,
 			usher: usherUrl,
 			advertiser,
 			details,
@@ -47,10 +50,20 @@ export const createCommand = new Command()
 
 		const campaign = await parseCampaignDoc(campaignJson);
 
-		const campaignsProvider = new Campaigns({ arweaveUrl, usherUrl });
-		const jwk = await readWallet(walletPath);
+		const campaignsProvider = new Campaigns({ usherUrl });
+		const privateKey = await readWallet(walletData);
 
-		const response = await campaignsProvider.createCampaign(campaign, jwk);
+		console.log("Uploading campaign to Arweave...");
+		const transactionId = await campaignsProvider.createCampaign(
+			campaign,
+			privateKey,
+			{
+				currency,
+			}
+		);
+		console.log("Indexing campaign on Usher...");
+		const response = await campaignsProvider.indexCampaign(transactionId);
 
+		console.log("Indexed successfully!");
 		console.log(JSON.stringify(response.campaign, null, 2));
 	});

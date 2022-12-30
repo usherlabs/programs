@@ -1,3 +1,4 @@
+import Bundlr from "@bundlr-network/client";
 import { CeramicClient } from "@ceramicnetwork/http-client";
 import { TileDocument } from "@ceramicnetwork/stream-tile";
 import {
@@ -7,17 +8,13 @@ import {
 } from "@usher.so/campaigns";
 import { CampaignReference } from "@usher.so/partnerships";
 import { ApiOptions } from "@usher.so/shared";
-import Arweave from "arweave";
-import { JWKInterface } from "arweave/node/lib/wallet.js";
+import BigNumber from "bignumber.js";
 import { DID } from "dids";
-import lodash from "lodash";
+import isEqual from "lodash/isEqual.js";
+import uniqWith from "lodash/uniqWith.js";
 import snakecaseKeys from "snakecase-keys";
 import { CampaignsApi } from "./api.js";
 import { Campaign } from "./types.js";
-import { parseArweaveApiConfig } from "./utils.js";
-
-// TODO: ? Required for compatibility with CommonJS modules
-const { isEqual, uniqWith } = lodash;
 
 export class Campaigns {
 	private readonly options: ApiOptions;
@@ -61,23 +58,37 @@ export class Campaigns {
 		);
 	}
 
-	public async createCampaign(campaign: CampaignDoc, jwk: JWKInterface) {
-		const apiConfig = parseArweaveApiConfig(this.options.arweaveUrl);
-		const arweave = Arweave.init(apiConfig);
+	//? https://docs.bundlr.network/docs/sdk/Basic%20Features/connecting-node
+	public async createCampaign(
+		campaign: CampaignDoc,
+		privateKey: string,
+		options?: { bundlrUrl?: string; currency?: string }
+	) {
+		const bundlrUrl = options?.bundlrUrl || "https://devnet.bundlr.network";
+		const currency = options?.currency || "arweave";
 		const data = JSON.stringify(snakecaseKeys(campaign, { deep: true }));
+		if (currency === "arweave") {
+			privateKey = JSON.parse(privateKey);
+		}
+		// @ts-ignore
+		const bundlr = new Bundlr.default(bundlrUrl, currency, privateKey);
+		await bundlr.ready();
+		const bytes = Buffer.byteLength(data, "utf-8");
+		const balance = (await bundlr.getLoadedBalance()) as BigNumber;
+		const price = (await bundlr.getPrice(bytes)) as BigNumber;
+		const fundAmount = price.minus(balance);
+		console.log(price.toNumber(), balance.toNumber(), fundAmount.toNumber());
+		if (fundAmount.gt(new BigNumber(0))) {
+			await bundlr.fund(fundAmount);
+		}
+		const response = await bundlr.upload(data, {
+			tags: [{ name: "Content-Type", value: "application/json" }],
+		});
 
-		const transaction = await arweave.createTransaction(
-			{
-				data,
-			},
-			jwk
-		);
-		transaction.addTag("Content-Type", "application/json");
+		return response.id;
+	}
 
-		await arweave.transactions.sign(transaction, jwk);
-
-		// TODO: Check for success
-		await arweave.transactions.post(transaction);
-		return await this.api.campaigns().index(transaction.id);
+	public async indexCampaign(transactionId: string) {
+		return await this.api.campaigns().index(transactionId);
 	}
 }
