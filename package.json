@@ -1,7 +1,7 @@
 {
 	"name": "programs",
 	"version": "0.0.1",
-	"license": "UNLICENSED",
+	"license": "MIT",
 	"scripts": {
 		"build": "nx run-many --target=build",
 		"clean": "del dist",
