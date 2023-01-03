@@ -1,0 +1,9 @@
+{
+	"definitions": {
+		"campaignDetails": "kjzl6cwe1jw1485gmkyl3piemhe0iulr71yt46jst4f5r48un49057l0elbqk5l"
+	},
+	"schemas": {
+		"CampaignDetails": "ceramic://k3y52l7qbv1frypudbyamlv2uosdh05efahrdjx4td99p37qpk9634n0ph7bd9534"
+	},
+	"tiles": {}
+}

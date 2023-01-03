@@ -1,0 +1,9 @@
+{
+	"definitions": {
+		"advertiserProfile": "kjzl6cwe1jw147r1a5024qp4nfeauu8o68pc5kbeyooaayz4mpjsxeq8js9zh0f"
+	},
+	"schemas": {
+		"AdvertiserProfile": "ceramic://k3y52l7qbv1fryavhbko86il7gpua2ci20zm9b3msggz8wgqomfnx6dcn2b5gw9hc"
+	},
+	"tiles": {}
+}
