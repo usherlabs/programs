@@ -27,7 +27,7 @@
 		"@glazed/types": "^0.2.0",
 		"@jsdevtools/ono": "^7.1.3",
 		"@usher.so/campaigns": "link:./dist/packages/campaigns",
-		"@usher.so/datamodels": "^0.0.7",
+		"@usher.so/datamodels": "link:./dist/packages/datamodels",
 		"@usher.so/shared": "link:./dist/packages/shared",
 		"arweave": "1.11.4",
 		"bignumber.js": "^9.1.1",
