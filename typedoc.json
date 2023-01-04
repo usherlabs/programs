@@ -1,0 +1,12 @@
+// typedoc.json
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPointStrategy": "packages",
+	"entryPoints": [
+		"packages/auth",
+		"packages/campaigns",
+		"packages/partnerships",
+		"packages/shared"
+	],
+	"out": "docs"
+}

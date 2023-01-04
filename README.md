@@ -67,6 +67,12 @@ Full documentation on installation and usage can be found on the [Usher document
 
 We are happy to accept small and large contributions, feel free to make a suggestion or submit a pull request.
 
+This monorepo is managed with [Nx](https://nx.dev).
+
+### Building the Repo
+
+Run `yarn build` or `npx nx build <package_name>` to build the library.
+
 ## Maintainers
 
 - rsoury ([@rsoury](https://github.com/rsoury))
