@@ -35,11 +35,10 @@ These features include:
 - Wallet connections
 - Affiliate marketing campaigns with crypto rewards
 
-> **Project Status**
->
+> **Project Status:**  
 > Usher is live and ready to accept newly created campaigns whereby rewards can be distributed to partners that refer people to the campaign's configured destination URL. Campaigns can also include reference to Smart Contract events, whereby wallets can be connected upon invite link visits, and then tracked as referred users when their associated wallet triggers a tracked Smart Contract events.
-> **Upcoming changes**
 >
+> **Upcoming changes:**  
 > Usher is preparing a new release where the link sharing and conversion tracking features can be used exclusively for data collection and insights. While affiliate marketing automatic reward distribution can still be associated to conversions, Usher is evolving the user expeirence to offer value through insights.
 
 ## Packages
