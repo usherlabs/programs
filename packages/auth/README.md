@@ -10,11 +10,13 @@ The Usher Auth module abstracts authentication with different wallets and authen
 During authentication, a unique DID is produced deterministically dependent on the authentication method.
 Authentication methods supported:
 
-- EVM compatible wallets
+- Metamask
+- Coinbase Wallet
+- Wallet Connect
 - Magic SDK
 - Arweave (JWK) compatibile wallets
 
-#### Authentication
+### Authentication
 
 ```javascript
 import { AuthOptions, Connections } from "@usher.so/shared";
@@ -156,7 +158,7 @@ try {
 
 ## 📕 Documentation
 
-- Usher Auth Typescript Docs: [https://ts-docs.js.usher.so](https://ts-docs.js.usher.so)
+- Usher Auth Typescript Docs: [https://ts-docs.programs.usher.so/modules/Usher_Auth](https://ts-docs.programs.usher.so/modules/Usher_Auth)
 - View integration example: [See file](https://github.com/usherlabs/usher.js/blob/master/tools/index.html)
 
 ## Troubleshooting
