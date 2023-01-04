@@ -1,11 +1,17 @@
-# campaigns
+# `@usher.so/campaigns`
 
-This library was generated with [Nx](https://nx.dev).
+Usher Campaigns is a package that contains logic to support the creation and deployment of a Campaign on Usher.
 
-## Building
+A Campaign is comprised of three components.
 
-Run `nx build campaigns` to build the library.
+1. A mutable doc (JSON) on the Campaign Advertiser
+2. A mutable doc on Campaign Details that do not affect the reward/event mechanisms.
+3. An immutable doc that references the mutable docs, as well as includes data related to conversion events and rewards.
 
-## Running unit tests
+## Features
 
-Run `nx test campaigns` to execute the unit tests via [Jest](https://jestjs.io).
+1. **Create Advertiser Doc**
+   The Advertiser Schema:
+   The ...
+2. **Create Campaign Details Doc**
+3. **Create a Campaign**
