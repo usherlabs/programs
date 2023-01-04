@@ -139,9 +139,16 @@ export class Authenticate {
 			this.authOptions
 		);
 
-		const previouslyConnectedWallets = JSON.parse(
-			window.localStorage.getItem("connectedWallets") || "[]"
-		) as (Wallet & { signature: string })[];
+		let prevWalletData = "[]";
+		if (typeof window !== "undefined") {
+			const item = window.localStorage.getItem("connectedWallets");
+			if (item) {
+				prevWalletData = item;
+			}
+		}
+		const previouslyConnectedWallets = JSON.parse(prevWalletData) as (Wallet & {
+			signature: string;
+		})[];
 
 		const [connectedWallet] = previouslyConnectedWallets.filter(
 			(wallet) => wallet.connection === connection
