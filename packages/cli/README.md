@@ -108,7 +108,7 @@ This process will automatically index the Campagin on Usher after deploying the 
 
 ### Index a Campaign
 
-If you have made changes to your Camapign Details or Advertiser docs, you will need to re-index the Usher Campaign.
+If you have made changes to your Campaign Details or Advertiser docs, you will need to re-index the Usher Campaign.
 
 ```shell
 usher campaign index arweave_tx_id

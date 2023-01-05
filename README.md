@@ -39,7 +39,7 @@ These features include:
 > Usher is live and ready to accept newly created campaigns whereby rewards can be distributed to partners that refer people to the campaign's configured destination URL. Campaigns can also include reference to Smart Contract events, whereby wallets can be connected upon invite link visits, and then tracked as referred users when their associated wallet triggers a tracked Smart Contract events.
 >
 > **Upcoming changes:**  
-> Usher is preparing a new release where the link sharing and conversion tracking features can be used exclusively for data collection and insights. While affiliate marketing automatic reward distribution can still be associated to conversions, Usher is evolving the user expeirence to offer value through insights.
+> Usher is preparing a new release where the link sharing and conversion tracking features can also be used purely for data collection and insights. While affiliate marketing rewards can still be associated to conversions, Usher is evolving the user expeirence to offer value through insights.
 
 ## Packages
 
@@ -47,8 +47,8 @@ These features include:
 | ------------ | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | Auth         | [@usher.so/auth](packages/auth)                 | Produce an authenticated DID using a wallet connection like Metamask, ArConnect, etc. and interface with the Ceramic Network or Usher's APIs |
 | Campaigns    | [@usher.so/campaigns](packages/campaigns)       | Create your own Usher Campaigns directly within your dApp                                                                                    |
-| Partnerships | [@usher.so/partnerships](packages/partnerships) | Manage your users' partnerships with a Campaign                                                                                              |
-| Shared       | [@usher.so/shared](packages/shared)             | A package shared throughout the Usher codebase.                                                                                              |
+| Partnerships | [@usher.so/partnerships](packages/partnerships) | Manage your users' partnerships against one or more Campaigns                                                                                |
+| Shared       | [@usher.so/shared](packages/shared)             | A package of facets shared throughout the Usher codebase.                                                                                    |
 | CLI          | [@usher.so/cli](packages/cli)                   | Manage your Usher Campaigns directly from your Terminal                                                                                      |
 
 > To learn more about each individual package, navigate to the relevant package folder.

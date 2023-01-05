@@ -6,8 +6,8 @@ Usher Auth is a package that contains all of the authentication processes requir
 
 ### Wallet Abstraction
 
-The Usher Auth module abstracts authentication with different wallets and authentication methods.
-During authentication, a unique DID is produced deterministically dependent on the authentication method.
+The Usher Auth module abstracts authentication with different wallets and authentication methods.  
+During authentication, a unique DID is produced deterministically dependent on the authentication method.  
 Authentication methods supported:
 
 - Metamask
@@ -36,9 +36,9 @@ console.log(ethAuth.did.id);
 
 ### Auth Tokens for API usage
 
-By generating a unique DID for each specific authentication, there is now a collection of authentications that represent the same user.
-Each DID exposes a single interface for using cryptography for identifying the underlying authentication/user.
-A token can be generated using this collection of authentications to unique indetify the user inside of an backend centralised API handler.
+By generating a unique DID for each specific authentication, there is now a collection of authentications that represent the same user.  
+Each DID exposes the same interface for using cryptography to identify the underlying authentication/user.  
+A token can be generated using this collection of authentications to uniquely indetify the user inside of a backend stateless environment. ie. a centralised serverless API handler.  
 An API can then intelligently store each unqiue DID in relation to each other, ideally in a graph, to produce a profile of a user based on their authentication methods.
 
 #### Generating an Auth Token

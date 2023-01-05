@@ -10,7 +10,7 @@ A Campaign is comprised of three components.
 
 ## Features
 
-1. **Create Advertiser Doc**
+1. **Create Advertiser Doc**  
    The Advertiser Schema:
 
    ```json
@@ -44,7 +44,7 @@ A Campaign is comprised of three components.
    );
    ```
 
-2. **Create Campaign Details Doc**
+2. **Create Campaign Details Doc**  
    The Campaign Details Schema:
 
    ```json
@@ -78,7 +78,7 @@ A Campaign is comprised of three components.
    );
    ```
 
-3. **Create a Campaign**
+3. **Create a Campaign**  
    Example Campaign Schema:
 
    ```json
@@ -110,9 +110,11 @@ A Campaign is comprised of three components.
 
    These two steps are managed inside the Campaign Module under the `createCampaign` and `indexCampaign` methods of the `CampaignDoc`.
 
-   A sample Campaign on Arweave can be found here: [https://viewblock.io/arweave/tx/tXMBq2s8WVpi0javfvChBTw5mQqkRaw8msejyGoHHhA](https://viewblock.io/arweave/tx/tXMBq2s8WVpi0javfvChBTw5mQqkRaw8msejyGoHHhA)
+   A sample Campaign on Arweave can be found here:  
+    [https://viewblock.io/arweave/tx/tXMBq2s8WVpi0javfvChBTw5mQqkRaw8msejyGoHHhA](https://viewblock.io/arweave/tx/tXMBq2s8WVpi0javfvChBTw5mQqkRaw8msejyGoHHhA)
 
-   More information on the purpose of each Campaign property can be found here: [https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object](https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object)
+   More information on the purpose of each Campaign property can be found here:  
+    [https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object](https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object)
 
    ```javascript
    import { ApiOptions } from "@usher.so/shared";
@@ -145,3 +147,12 @@ A Campaign is comprised of three components.
    ```
 
    While [Bundlr Network](https://bundlr.network/) is not required to submit the Arweave payloads, it does remove delays associated to Arweave's block time.
+
+## 📕 Documentation
+
+- Usher Campaigns Typescript Docs: [https://ts-docs.programs.usher.so/modules/Usher_Campaigns](https://ts-docs.programs.usher.so/modules/Usher_Campaigns)
+
+## Troubleshooting
+
+- For questions, support, and discussions: [Join the Usher Discord](https://go.usher.so/discord)
+- For bugs and feature requests: [Create an issue on Github](https://github.com/usherlabs/programs/issues)

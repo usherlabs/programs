@@ -1,17 +1,17 @@
 # `@usher.so/partnerships`
 
-Usher Partnerships is a package that simplifies partnership creation on behalf of end-users against a given Campaign.
-This way your users can register themselves as partners with any given Usher Campaign.
-It also include use of an API endpoint where any DID authenticated user can have their related partnerships data and invite links.
+Usher Partnerships is a package that simplifies partnership creation on behalf of end-users against a given Campaign.  
+This way your users can register themselves as partners with any given Usher Campaign.  
+Any authenticated DID (user) can fetch their related partnerships data and invite links through authentication with Usher's API.
 
 ## Methods
 
-- `addPartnership`
+- **`addPartnership`**  
   Create a partnership against any Campaign on behalf of the most suitable Wallet/DID Authentication loaded in memory.
-- `createPartnership`
-  Create a partnership against any Campaign on behalf of a Wallet/DID Authentication managed inside of [`@usher.so/auth`](packages/auth).
-- `loadRelatedPartnerships`
-  Load all partnerships indexed against the authenticated user.
+- **`createPartnership`**  
+  Create a partnership against any Campaign on behalf of a specific Wallet/DID Authentication managed inside of [`@usher.so/auth`](packages/auth).
+- **`loadRelatedPartnerships`**  
+  Load all partnerships data indexed against the authenticated user.
 
 ## 📕 Documentation
 
