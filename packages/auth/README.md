@@ -159,7 +159,6 @@ try {
 ## 📕 Documentation
 
 - Usher Auth Typescript Docs: [https://ts-docs.programs.usher.so/modules/Usher_Auth](https://ts-docs.programs.usher.so/modules/Usher_Auth)
-- View integration example: [See file](https://github.com/usherlabs/usher.js/blob/master/tools/index.html)
 
 ## Troubleshooting
 

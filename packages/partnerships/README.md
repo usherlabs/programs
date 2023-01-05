@@ -1,11 +1,23 @@
-# partnerships
+# `@usher.so/partnerships`
 
-This library was generated with [Nx](https://nx.dev).
+Usher Partnerships is a package that simplifies partnership creation on behalf of end-users against a given Campaign.
+This way your users can register themselves as partners with any given Usher Campaign.
+It also include use of an API endpoint where any DID authenticated user can have their related partnerships data and invite links.
 
-## Building
+## Methods
 
-Run `nx build partnerships` to build the library.
+- `addPartnership`
+  Create a partnership against any Campaign on behalf of the most suitable Wallet/DID Authentication loaded in memory.
+- `createPartnership`
+  Create a partnership against any Campaign on behalf of a Wallet/DID Authentication managed inside of [`@usher.so/auth`](packages/auth).
+- `loadRelatedPartnerships`
+  Load all partnerships indexed against the authenticated user.
 
-## Running unit tests
+## 📕 Documentation
 
-Run `nx test partnerships` to execute the unit tests via [Jest](https://jestjs.io).
+- Usher Partnerships Typescript Docs: [https://ts-docs.programs.usher.so/modules/Usher_Partnerships](https://ts-docs.programs.usher.so/modules/Usher_Partnerships)
+
+## Troubleshooting
+
+- For questions, support, and discussions: [Join the Usher Discord](https://go.usher.so/discord)
+- For bugs and feature requests: [Create an issue on Github](https://github.com/usherlabs/programs/issues)
