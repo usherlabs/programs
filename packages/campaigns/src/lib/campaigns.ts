@@ -1,11 +1,6 @@
 import Bundlr from "@bundlr-network/client";
 import { CeramicClient } from "@ceramicnetwork/http-client";
 import { TileDocument } from "@ceramicnetwork/stream-tile";
-import {
-	AdvertiserDoc,
-	CampaignDetailsDoc,
-	CampaignDoc,
-} from "@usher.so/campaigns";
 import { CampaignReference } from "@usher.so/partnerships";
 import { ApiOptions } from "@usher.so/shared";
 import BigNumber from "bignumber.js";
@@ -14,6 +9,9 @@ import isEqual from "lodash/isEqual.js";
 import uniqWith from "lodash/uniqWith.js";
 import snakecaseKeys from "snakecase-keys";
 import { CampaignsApi } from "./api.js";
+import { AdvertiserDoc } from "./schemas/advertiserDoc.js";
+import { CampaignDetailsDoc } from "./schemas/campaignDetailsDoc.js";
+import { CampaignDoc } from "./schemas/campaignDoc.js";
 import { Campaign } from "./types.js";
 
 export class Campaigns {
@@ -69,6 +67,7 @@ export class Campaigns {
 		if (currency === "arweave") {
 			privateKey = JSON.parse(privateKey);
 		}
+		// eslint-disable-next-line
 		// @ts-ignore
 		const bundlr = new Bundlr.default(bundlrUrl, currency, privateKey);
 		await bundlr.ready();
