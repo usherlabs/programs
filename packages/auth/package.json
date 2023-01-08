@@ -1,6 +1,6 @@
 {
 	"name": "@usher.so/auth",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"type": "module",
 	"typedoc": {
 		"entryPoint": "./src/index.ts",

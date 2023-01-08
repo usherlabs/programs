@@ -26,7 +26,6 @@ A Campaign is comprised of three components.
    Creating Advertiser Doc:
 
    ```javascript
-   import { ApiOptions } from "@usher.so/shared";
    import { Campaigns, parseAdvertiserDoc } from "@usher.so/campaigns";
    const advertiser = parseAdvertiserDoc({
    	name: "Advertiser Name",
@@ -35,9 +34,7 @@ A Campaign is comprised of three components.
    	externalLink: "https://advertiser_url.com",
    	twitter: "https://twitter.com/advertiser_twitter_handle",
    });
-   const campaignsProvider = new Campaigns({
-   	ceramicUrl: ApiOptions.default.ceramicUrl,
-   });
+   const campaignsProvider = new Campaigns();
    const ceramicTile = await campaignsProvider.createAdvertiser(
    	advertiser,
    	user_did
@@ -60,7 +57,6 @@ A Campaign is comprised of three components.
    Creating Campaign Details Doc:
 
    ```javascript
-   import { ApiOptions } from "@usher.so/shared";
    import { Campaigns, parseAdvertiserDoc } from "@usher.so/campaigns";
    const advertiser = parseAdvertiserDoc({
    	name: "Some new Campaign",
@@ -69,9 +65,7 @@ A Campaign is comprised of three components.
    	external_link: "https://usher.so?ref=test-campaign",
    	image: "https://usher-pub.s3.amazonaws.com/app/usher-logo-medium.png",
    });
-   const campaignsProvider = new Campaigns({
-   	ceramicUrl: ApiOptions.default.ceramicUrl,
-   });
+   const campaignsProvider = new Campaigns();
    const tile = await campaignsProvider.createCampaignDetails(
    	campaignDetails,
    	user_did
@@ -117,11 +111,10 @@ A Campaign is comprised of three components.
     [https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object](https://docs.usher.so/advertise-and-grow-your-web3-brand/the-campaign-object)
 
    ```javascript
-   import { ApiOptions } from "@usher.so/shared";
    import { Campaigns, parseCampaignDoc } from "@usher.so/campaigns";
    const campaign = await parseCampaignDoc(campaignJson);
 
-   	const campaignsProvider = new Campaigns({ usherUrl: ApiOptions.default.usherUrl });
+   	const campaignsProvider = new Campaigns();
    	const privateKey = await readWallet(walletData); // read private key of wallet from somewhere.
 
    	console.log("Uploading campaign to Arweave...");

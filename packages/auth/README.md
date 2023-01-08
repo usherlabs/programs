@@ -19,10 +19,9 @@ Authentication methods supported:
 ### Authentication
 
 ```javascript
-import { AuthOptions, Connections } from "@usher.so/shared";
+import { Connections } from "@usher.so/shared";
 
-const AUTH_OPTIONS = AuthOptions({ environment: "production" });
-const authInstance = new Authenticate(arweave, ethProvider, AUTH_OPTIONS);
+const authInstance = new Authenticate(arweave, ethProvider);
 
 await authInstance.withEthereum(
 	wallet.accounts[0].address,
@@ -44,10 +43,9 @@ An API can then intelligently store each unqiue DID in relation to each other, i
 #### Generating an Auth Token
 
 ```javascript
-import { AuthOptions, Connections } from "@usher.so/shared";
+import { Connections } from "@usher.so/shared";
 
-const AUTH_OPTIONS = AuthOptions({ environment: "production" });
-const authInstance = new Authenticate(arweave, ethProvider, AUTH_OPTIONS);
+const authInstance = new Authenticate(arweave, ethProvider);
 
 await authInstance.withEthereum(
 	wallet.accounts[0].address,
