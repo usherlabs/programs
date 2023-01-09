@@ -47,6 +47,7 @@ export const createCommand = new Command()
 			streamId: tile.id.toString(),
 		});
 
+		console.log(`Campaign Details Doc created!`);
 		console.log({
 			streamID: tile.id.toString(),
 			content: tile.content,

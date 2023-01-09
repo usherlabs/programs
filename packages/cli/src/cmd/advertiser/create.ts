@@ -44,6 +44,7 @@ export const createCommand = new Command()
 			streamId: tile.id.toString(),
 		});
 
+		console.log(`Advertiser Profile Doc created!`);
 		console.log({
 			streamID: tile.id.toString(),
 			content: tile.content,

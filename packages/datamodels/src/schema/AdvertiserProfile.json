@@ -3,13 +3,10 @@
 	"title": "AdvertiserProfile",
 	"type": "object",
 	"properties": {
-		"name": {
-			"type": "string",
-			"description": "Name of the Advertiser"
-		},
+		"name": { "type": "string", "description": "Name of the Advertiser" },
 		"icon": {
 			"type": "string",
-			"description": "A hosted image URL of the Advertiser's Brand Icon"
+			"description": "A hosted image URL of the Advertiser Brand Icon"
 		},
 		"description": {
 			"type": "string",

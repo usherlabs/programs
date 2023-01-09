@@ -1,10 +1,7 @@
 import Bundlr from "@bundlr-network/client";
 import { CeramicClient } from "@ceramicnetwork/http-client";
-import { DataModel } from "@glazed/datamodel";
-import {
-	AdvertiserProfileAliases,
-	CampaignDetailsAliases,
-} from "@usher.so/datamodels";
+import { TileDocument } from "@ceramicnetwork/stream-tile";
+import { CampaignAliases } from "@usher.so/datamodels";
 import { CampaignReference } from "@usher.so/partnerships";
 import { ApiOptions } from "@usher.so/shared";
 import BigNumber from "bignumber.js";
@@ -41,10 +38,12 @@ export class Campaigns {
 		const ceramic = new CeramicClient(this.options.ceramicUrl);
 		ceramic.did = did;
 
-		const model = new DataModel({ ceramic, aliases: AdvertiserProfileAliases });
-		return await model.createTile(
-			"AdvertiserProfile",
-			snakecaseKeys(advertiser, { deep: true })
+		return await TileDocument.create(
+			ceramic,
+			snakecaseKeys(advertiser, { deep: true }),
+			{
+				schema: CampaignAliases.schemas.AdvertiserProfile,
+			}
 		);
 	}
 
@@ -55,10 +54,12 @@ export class Campaigns {
 		const ceramic = new CeramicClient(this.options.ceramicUrl);
 		ceramic.did = did;
 
-		const model = new DataModel({ ceramic, aliases: CampaignDetailsAliases });
-		return await model.createTile(
-			"CampaignDetails",
-			snakecaseKeys(campaignDetails, { deep: true })
+		return await TileDocument.create(
+			ceramic,
+			snakecaseKeys(campaignDetails, { deep: true }),
+			{
+				schema: CampaignAliases.schemas.CampaignDetails,
+			}
 		);
 	}
 

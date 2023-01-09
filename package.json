@@ -18,6 +18,9 @@
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
 	},
+	"engines": {
+		"node": ">=17.5"
+	},
 	"dependencies": {
 		"@aws-crypto/sha256-js": "^2.0.2",
 		"@bundlr-network/client": "^0.9.11",
