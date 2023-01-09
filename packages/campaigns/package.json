@@ -1,6 +1,6 @@
 {
 	"name": "@usher.so/campaigns",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "module",
 	"typedoc": {
 		"entryPoint": "./src/index.ts",
