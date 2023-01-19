@@ -4,15 +4,6 @@ import { Wallet } from "@usher.so/shared";
 import { Auth } from "./auth.js";
 import { AuthOptions } from "./options.js";
 
-type MagicWallet = {
-	arweave?: {
-		address: string;
-		data: string;
-	};
-};
-
-const CERAMIC_MAGIC_WALLETS_KEY = "magicWallets";
-
 /**
  * A class representing a single authentication (wallet connection)
  */
@@ -40,13 +31,5 @@ export class WalletAuth extends Auth {
 
 	public async connect(sig: Uint8Array) {
 		await this.authenticate(this.id, sig);
-	}
-
-	public getMagicWallets() {
-		return this._store.get(CERAMIC_MAGIC_WALLETS_KEY);
-	}
-
-	public addMagicWallet(wallet: MagicWallet) {
-		return this._store.merge(CERAMIC_MAGIC_WALLETS_KEY, wallet);
 	}
 }
