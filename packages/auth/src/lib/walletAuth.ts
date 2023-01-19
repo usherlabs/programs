@@ -1,8 +1,10 @@
-import { WalletAliases } from "@usher.so/datamodels";
+import * as datamodels from "@usher.so/datamodels";
 import { Wallet } from "@usher.so/shared";
 
 import { Auth } from "./auth.js";
 import { AuthOptions } from "./options.js";
+
+const { WalletAliases } = datamodels;
 
 /**
  * A class representing a single authentication (wallet connection)

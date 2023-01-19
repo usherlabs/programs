@@ -13,8 +13,11 @@ export class Authenticate {
 	protected auths: WalletAuth[] = [];
 
 	constructor(
-		private arweave: Arweave, // ? Left here for compatibility for when MagicWallets are used again.
-		private ethProvider: ethers.providers.Web3Provider,
+		private providers: {
+			arweave?: Arweave;
+			ethereum?: ethers.providers.Web3Provider;
+			magic?: ethers.providers.Web3Provider;
+		},
 		private authOptions?: AuthOptions
 	) {}
 
@@ -58,6 +61,18 @@ export class Authenticate {
 
 	public getAll() {
 		return this.auths;
+	}
+
+	public setProvider(
+		key: "ethereum" | "magic" | "arweave",
+		provider: ethers.providers.Web3Provider | Arweave
+	) {
+		if (key === "arweave") {
+			this.providers[key] = provider as Arweave;
+		}
+		if (key === "ethereum" || key === "magic") {
+			this.providers[key] = provider as ethers.providers.Web3Provider;
+		}
 	}
 
 	/**
@@ -138,6 +153,7 @@ export class Authenticate {
 			this.authOptions
 		);
 
+		// TODO: This is currently only available on Web ... and not so friendly. To make this compatible with ethProvider in Node.js environment.
 		let prevWalletData = "[]";
 		if (typeof window !== "undefined") {
 			const item = window.localStorage.getItem("connectedWallets");
@@ -176,9 +192,12 @@ export class Authenticate {
 	 * Push the encrypted JWK wallet to Ceramic under a "MagicWallets" stream
 	 */
 	public async withMagic(): Promise<WalletAuth> {
-		const signer = this.ethProvider.getSigner();
+		if (!this.providers.magic) {
+			throw new Error("Magic Provider not loaded");
+		}
+		const signer = this.providers.magic.getSigner();
 		const address = await signer.getAddress();
-		const ethAuth = new WalletAuth(
+		const auth = new WalletAuth(
 			{
 				address,
 				chain: Chains.ETHEREUM,
@@ -187,17 +206,17 @@ export class Authenticate {
 			this.authOptions
 		);
 
-		const sig = await signer.signMessage(ethAuth.id);
-		await ethAuth.connect(uint8arrays.fromString(sig));
+		const sig = await signer.signMessage(auth.id);
+		await auth.connect(uint8arrays.fromString(sig));
 
 		// If wallet DID does not exist, push and activate it
-		if (!this.exists(ethAuth.did)) {
-			this.add(ethAuth);
+		if (!this.exists(auth.did)) {
+			this.add(auth);
 		}
 
 		// Called after the wallets are indexed together.
-		this.removeSimilar(ethAuth);
+		this.removeSimilar(auth);
 
-		return ethAuth;
+		return auth;
 	}
 }
