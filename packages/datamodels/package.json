@@ -1,6 +1,6 @@
 {
 	"name": "@usher.so/datamodels",
-	"version": "0.0.4",
+	"version": "0.0.8",
 	"type": "module",
 	"license": "MIT",
 	"typedoc": {
