@@ -1,16 +1,16 @@
 export const WalletAliases = {
 	definitions: {
 		magicWallets:
-			"kjzl6cwe1jw148heft4r24n68izv288c070poyth1t7mlm8ha6b5g6i5sgtsu1n",
+			"kjzl6cwe1jw146h9rgxpi1zsu9to59uymqww84ylel35yjo0etmalfo30tbcogo",
 		partnerships:
-			"kjzl6cwe1jw147xb2vo0kton9skp2xmlrbobz9i27j9ioqs1cxw7k9vrmsguxfn",
+			"kjzl6cwe1jw14a5sf4jy582mfr8wzab9ukft68h0r951eo2ioprox1pmktajeod",
 	},
 	schemas: {
-		set: "ceramic://k3y52l7qbv1fryc270bbvb7hgq2389f4y4aafwyfi0p6323zv81yly1f5oda3kqgw",
+		set: "ceramic://k3y52l7qbv1fryf9ngl71xa0ynohn9tca9x3rlwvdc29ka0vdbs7wt2fll87jleyo",
 		MagicWallets:
-			"ceramic://k3y52l7qbv1frymgtzynnhd71aml5adq9r0mvxjzxcnccjp3nlk2t1of1y0eshse8",
+			"ceramic://k3y52l7qbv1frxojm3ng64si0ncs1pfvcxdjx65tchbvdhijddmxuflg0087or56o",
 		Partnership:
-			"ceramic://k3y52l7qbv1fryo0lvh3ek9j0trrps55tn9g78f3dwlbs9fdfaajrmgkdj2hmn9j4",
+			"ceramic://k3y52l7qbv1frxilvpm7l9d386xds5abtaa1590wdjm1itswcl5ijhzzq7xw4sw00",
 	},
 	tiles: {},
 };
