@@ -3,3 +3,4 @@
 /packages/auth /modules/usher_auth
 /packages/partnerships /modules/usher_partnerships
 /packages/cli https://github.com/usherlabs/programs/tree/main/packages/cli
+/modules/usher_cli https://github.com/usherlabs/programs/tree/main/packages/cli
