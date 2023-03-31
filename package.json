@@ -7,7 +7,7 @@
 		"clean": "del dist docs",
 		"format": "nx format --all",
 		"lint": "nx run-many --target=lint",
-		"docs": "typedoc"
+		"docs": "typedoc && cpy _redirects docs"
 	},
 	"private": false,
 	"repository": {
@@ -64,6 +64,7 @@
 		"@types/node": "18.7.1",
 		"@typescript-eslint/eslint-plugin": "^5.36.1",
 		"@typescript-eslint/parser": "^5.36.1",
+		"cpy-cli": "^4.2.0",
 		"del-cli": "^5.0.0",
 		"esbuild": "^0.15.7",
 		"eslint": "~8.15.0",
