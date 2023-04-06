@@ -39,7 +39,7 @@ These features include:
 > Usher is live and ready to accept newly created campaigns whereby rewards can be distributed to partners that refer people to the campaign's configured destination URL. Campaigns can also include reference to Smart Contract events, whereby wallets can be connected upon invite link visits, and then tracked as referred users when their associated wallet triggers a tracked Smart Contract events.
 >
 > **Upcoming changes:**  
-> Usher is preparing a new release where the link sharing and conversion tracking features can also be used purely for data collection and insights. While affiliate marketing rewards can still be associated to conversions, Usher is evolving the user expeirence to offer value through insights.
+> Usher is preparing a new release where the link sharing and conversion tracking features can also be used purely for data collection and insights. While affiliate marketing rewards can still be associated to conversions, Usher is evolving the user experience to offer value through insights.
 
 ## Packages
 
@@ -55,7 +55,7 @@ These features include:
 
 ## Quick start
 
-Learn the basics by creating a new Camapign and indexing it on Usher with the Usher CLI. [CLI guide →](packages/cli)
+Learn the basics by creating a new Campaign and indexing it on Usher with the Usher CLI. [CLI guide →](packages/cli)
 
 ## Installation and usage
 
