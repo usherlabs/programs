@@ -114,6 +114,10 @@ export class Partnerships {
 		return this.partnerships;
 	}
 
+	public unloadAllPartnerships() {
+		this.partnerships = [];
+	}
+
 	/**
 	 * Load all partnerships owned and indexed by related DIDs
 	 */
