@@ -1,7 +1,8 @@
 export enum Chains {
 	ARWEAVE = "arweave",
 	ETHEREUM = "ethereum",
-	// POLYGON = "polygon"
+	BSC = "bsc",
+	POLYGON = "polygon"
 }
 
 export enum Connections {
@@ -11,6 +12,9 @@ export enum Connections {
 	METAMASK = "meta_mask",
 	WALLETCONNECT = "wallet_connect",
 }
+
+export const EVMBasedChainList = [Chains.BSC, Chains.ETHEREUM, Chains.POLYGON] as const;
+export type EVMBasedChain = typeof EVMBasedChainList[number];
 
 // TODO: Probably move to @usher.so/auth library
 export type Wallet = {
