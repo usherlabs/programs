@@ -1,13 +1,37 @@
 import { randomString } from "@stablelib/random";
-import { Chains, Connections, Wallet } from "@usher.so/shared";
+import {
+	Chains,
+	Connections,
+	EVMBasedChain,
+	EVMBasedChainList,
+	Wallet,
+} from "@usher.so/shared";
 import Arweave from "arweave";
 import { DID } from "dids";
 import { ethers } from "ethers";
 import { Base64 } from "js-base64";
 import * as uint8arrays from "uint8arrays";
-
 import { AuthOptions } from "./options.js";
 import { WalletAuth } from "./walletAuth.js";
+
+type StoredWallet = Wallet & {
+	signature: string;
+};
+
+function getStoredWallets() {
+	// TODO: This is currently only available on Web ... and not so friendly. To make this compatible with ethProvider in Node.js environment.
+	let prevWalletData = "[]";
+	if (typeof window !== "undefined") {
+		const item = window.localStorage.getItem("connectedWallets");
+		if (item) {
+			prevWalletData = item;
+		}
+	}
+	const previouslyConnectedWallets = JSON.parse(
+		prevWalletData
+	) as StoredWallet[];
+	return previouslyConnectedWallets;
+}
 
 export class Authenticate {
 	protected auths: WalletAuth[] = [];
@@ -61,6 +85,10 @@ export class Authenticate {
 
 	public getAll() {
 		return this.auths;
+	}
+
+	public removeAll() {
+		this.auths = [];
 	}
 
 	public setProvider(
@@ -131,8 +159,50 @@ export class Authenticate {
 			this.add(auth);
 		}
 
-		// Called after the wallets are indexed together.
-		this.removeSimilar(auth);
+		return auth;
+	}
+
+	public async withEVMBasedChain(
+		address: string,
+		connection: Connections,
+		chain: EVMBasedChain
+	): Promise<WalletAuth> {
+		const auth = new WalletAuth(
+			{
+				address,
+				chain,
+				connection,
+			},
+			this.authOptions
+		);
+
+		if (!EVMBasedChainList.includes(chain)) {
+			console.warn(`EVMBasedChain ${chain} not supported`);
+			return auth;
+		}
+
+		const previouslyConnectedWallets = getStoredWallets();
+
+		const [connectedWallet] = previouslyConnectedWallets.filter(
+			(wallet) =>
+				wallet.connection === connection &&
+				wallet.chain === chain &&
+				wallet.address === address
+		);
+
+		if (!connectedWallet) {
+			throw new Error("No wallet found");
+		}
+
+		const sig = uint8arrays.fromString(connectedWallet.signature);
+
+		await auth.connect(sig);
+		const { did } = auth;
+
+		// If wallet DID does not exist, push and activate it
+		if (!this.exists(did)) {
+			this.add(auth);
+		}
 
 		return auth;
 	}
@@ -152,22 +222,19 @@ export class Authenticate {
 			},
 			this.authOptions
 		);
-
-		// TODO: This is currently only available on Web ... and not so friendly. To make this compatible with ethProvider in Node.js environment.
-		let prevWalletData = "[]";
-		if (typeof window !== "undefined") {
-			const item = window.localStorage.getItem("connectedWallets");
-			if (item) {
-				prevWalletData = item;
-			}
-		}
-		const previouslyConnectedWallets = JSON.parse(prevWalletData) as (Wallet & {
-			signature: string;
-		})[];
+		const previouslyConnectedWallets = getStoredWallets();
 
 		const [connectedWallet] = previouslyConnectedWallets.filter(
-			(wallet) => wallet.connection === connection
+			(wallet) =>
+				wallet.connection === connection &&
+				wallet.chain === Chains.ETHEREUM &&
+				wallet.address === address
 		);
+
+		if (!connectedWallet) {
+			throw new Error("No wallet found");
+		}
+
 		const sig = uint8arrays.fromString(connectedWallet.signature);
 
 		await auth.connect(sig);
@@ -177,9 +244,6 @@ export class Authenticate {
 		if (!this.exists(did)) {
 			this.add(auth);
 		}
-
-		// Called after the wallets are indexed together.
-		this.removeSimilar(auth);
 
 		return auth;
 	}
@@ -213,9 +277,6 @@ export class Authenticate {
 		if (!this.exists(auth.did)) {
 			this.add(auth);
 		}
-
-		// Called after the wallets are indexed together.
-		this.removeSimilar(auth);
 
 		return auth;
 	}
